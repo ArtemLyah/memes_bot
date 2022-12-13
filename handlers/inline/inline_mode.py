@@ -50,14 +50,14 @@ async def send_all(query:types.InlineQuery):
                     id=str(i), 
                     photo_file_id=meme["file_id"]
             ))
-        if meme["file_type"] == "video":
+        elif meme["file_type"] == "video":
             results.append(
                 types.InlineQueryResultCachedVideo(
                     id=str(i), 
                     title = "-",
                     video_file_id=meme["file_id"]
             ))
-        if meme["file_type"] == "audio":
+        elif meme["file_type"] == "audio":
             results.append(
                 types.InlineQueryResultCachedAudio(
                     id=str(i), 
