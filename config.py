@@ -4,7 +4,7 @@ import os
 # load data from .env
 load_dotenv()
 
-father_id = os.getenv("father_id")
+father_id = int(os.getenv("father_id"))
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 DB_NAME = os.getenv("DB_NAME")
