@@ -22,7 +22,7 @@ async def send_video(query:types.InlineQuery):
         results.append(
             types.InlineQueryResultCachedVideo(
                 id=str(i), 
-                title="-",
+                title=meme["file_name"] if meme["file_name"] else "No name",
                 video_file_id=meme["file_id"]
         ))
     await query.answer(results=results, cache_time=5)
@@ -53,8 +53,8 @@ async def send_all(query:types.InlineQuery):
         elif meme["file_type"] == "video":
             results.append(
                 types.InlineQueryResultCachedVideo(
-                    id=str(i), 
-                    title = "-",
+                    id = str(i), 
+                    title = meme["file_name"] if meme["file_name"] else "No name",
                     video_file_id=meme["file_id"]
             ))
         elif meme["file_type"] == "audio":

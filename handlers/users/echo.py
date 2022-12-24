@@ -14,7 +14,7 @@ async def photo_meme(message:types.Message):
 
 @dp.message_handler(IsFather(), content_types=types.ContentTypes.VIDEO)
 async def video_meme(message:types.Message):
-    await db.add_meme(message.video.file_id, "video")
+    await db.add_meme(message.video.file_id, message.video.file_name, "video")
     await message.reply(message.video.file_id)
 
 @dp.message_handler(IsFather(), content_types=types.ContentTypes.AUDIO)

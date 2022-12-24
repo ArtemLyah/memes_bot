@@ -41,9 +41,9 @@ class Database():
     async def is_meme_in_list(self, file_id, file_type):
         sql = f"SELECT * FROM telegram_memes WHERE file_id='{file_id}' AND file_type='{file_type}'"
         return bool(await self.execute(sql, fetchrow=True))
-    async def add_meme(self, file_id, file_type):
+    async def add_meme(self, file_id, file_name, file_type):
         if not (await self.is_meme_in_list(file_id, file_type)):
-            sql = f"INSERT INTO telegram_memes VALUES('{file_id}', '{file_type}')"
+            sql = f"INSERT INTO telegram_memes(file_id, file_name, file_type) VALUES('{file_id}', '{file_name}', '{file_type}')"
             return await self.execute(sql, execute=True)
     async def delete_meme(self, file_id):
         sql = f"DELETE FROM telegram_memes WHERE file_id='{file_id}'"
