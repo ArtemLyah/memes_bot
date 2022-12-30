@@ -19,7 +19,7 @@ class Database():
                         fetchval = False,
                         fetchrow = False,
                         execute = False
-                        ):
+        ):
         async with self.pool.acquire() as connection:
             connection:Connection
             async with connection.transaction():
@@ -43,6 +43,7 @@ class Database():
         return bool(await self.execute(sql, fetchrow=True))
     async def add_meme(self, file_id, file_type, file_name=None):
         if not (await self.is_meme_in_list(file_id, file_type)):
+            file_name = file_name.replace("'", "").replace('"', "")
             sql = f"INSERT INTO telegram_memes(file_id, file_name, file_type) VALUES('{file_id}', '{file_name}', '{file_type}')"
             return await self.execute(sql, execute=True)
     async def delete_meme(self, file_id):
